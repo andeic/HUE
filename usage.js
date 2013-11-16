@@ -4,6 +4,6 @@ $(document).ready(function() {
 	});
 
 	$('#on').on('click', function() {
-		HUE.test();
+		HUE.switch(1);
 	});
 });
