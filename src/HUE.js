@@ -37,6 +37,14 @@
 
 	HUE.lighturl = 'http://' + ip + '/api/' + user + '/lights/';
 	HUE.groupurl = 'http://' + ip + '/api/' + user + '/groups/';
+
+	HUE.init = function(options) {
+		ip = def(options['ip'], ip);
+		user = def(options['user'], user);
+
+		HUE.lighturl = 'http://' + ip + '/api/' + user + '/lights/';
+		HUE.groupurl = 'http://' + ip + '/api/' + user + '/groups/';
+	}
 	
 	HUE.getLights = function() {
 		return get(HUE.lighturl);
@@ -55,13 +63,23 @@
 		return get(HUE.groupurl + group);
 	}
 
-	HUE.switch = function(light) {
+	HUE.swich = function(light) {
 		if (HUE.getLight(light).state.on) {
 			actions['on'] = false;
 		}
 		else {
 			actions['on'] = true;
 		}
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+	}
+
+	HUE.lightOn = function(light) {
+		actions['on'] = true;
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+	}
+
+	HUE.lightOff = function(light) {
+		actions['on'] = false;
 		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
 	}
 
