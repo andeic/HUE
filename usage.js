@@ -4,7 +4,6 @@ $(document).ready(function() {
 	});
 
 	$('#on').on('click', function() {
-		HUE.groupOn();
-		//HUE.switch(2);
+		HUE.getGroup();
 	});
 });

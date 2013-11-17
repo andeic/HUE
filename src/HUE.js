@@ -25,6 +25,10 @@
 		});
 	}
 
+	var def = function(arg, val) { 
+		return typeof arg !== 'undefined' ? arg : val;
+	}
+
 	var ip = ''; //get('http://www.meethue.com/api/nupnp')[0].internalipaddress;
 	var user = '';
 	var actions = {};
@@ -47,6 +51,7 @@
 	}
 
 	HUE.getGroup = function(group) {
+		group = def(group, 0);
 		return get(HUE.groupurl + group);
 	}
 
@@ -61,11 +66,13 @@
 	}
 
 	HUE.groupOn = function(group) {
+		group = def(group, 0);
 		actions['on'] = true;
 		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
 	}
 
 	HUE.groupOff = function(group) {
+		group = def(group, 0);
 		actions['on'] = false;
 		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
 	}
