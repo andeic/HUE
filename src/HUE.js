@@ -152,8 +152,11 @@
 		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
 	}
 
-	HUE.color = function(light, color) {
+	HUE.color = function(light, color, time) {
 		color = def(color, 'ffffff');
+		time = def (time, 4);
+
+		if (time < 0) time = 0;
 
 		if (color instanceof Array) {
 			actions.xy = HUE.rgbtoxy(color);
@@ -161,7 +164,70 @@
 		else if(typeof color === 'string') {
 			actions.xy = HUE.hextoxy(color);
 		}
+		actions.transitiontime = time;
 		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+	}
+
+	HUE.bri = function(light, bri, time) {
+		bri = def(bri, 255);
+		time = def (time, 4);
+
+		if (bri > 255) bri = 255;
+		if (bri < 0) bri = 0;
+		if (time < 0) time = 0;
+
+		actions.bri = bri;
+		actions.transitiontime = time;
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+	}
+
+	HUE.colorLoop = function(light, timeout) {
+		timeout = def(timeout, 0);
+
+		if (HUE.getLight(light).state.effect === 'none') {
+			actions.effect = 'colorloop';
+		}
+		else {
+			actions.effect = 'none';
+		}
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+
+		if (timeout > 0) {
+			setTimeout(function() {
+				if (actions.effect === 'none') {
+					actions.effect = 'colorloop';
+				}
+				else {
+					actions.effect = 'none';
+				}
+				put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+			}, timeout * 100);
+		}
+	}
+
+	HUE.breathe = function(light) {
+		actions.alert = 'select';
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+	}
+
+	HUE.breathing = function(light, timeout) {
+		timeout = def(timeout, 0);
+
+		if (timeout > 29) timeout = 29;
+
+		actions.alert = 'lselect';
+		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+
+		if (timeout > 0) {
+			actions.alert = 'none';
+			setTimeout(function() {
+				put(HUE.lighturl + light + '/state', JSON.stringify(actions));
+			}, timeout * 100);
+		}
+	}
+
+	HUE.custom = function(light, options) {
+		put(HUE.lighturl + light + '/state', JSON.stringify(options));
 	}
 
 	/* Group functions */

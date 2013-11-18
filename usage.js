@@ -13,8 +13,8 @@ $(document).ready(function() {
 
 		var hex = '#ff0000';
 
-		HUE.color(1, rgb);
+		HUE.custom(1, {'bri':255, 'xy':HUE.hextoxy(hex), 'transitiontime':20});
+		
 	});
 	
-
 });
