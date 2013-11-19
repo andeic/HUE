@@ -215,7 +215,7 @@
 	HUE.breathing = function(light, timeout) {
 		timeout = def(timeout, 0);
 
-		if (timeout > 29) timeout = 29;
+		if (timeout > 290) timeout = 290;
 
 		actions.alert = 'lselect';
 		put(HUE.lighturl + light + '/state', JSON.stringify(actions));
@@ -311,7 +311,7 @@
 		group = def(group, 0);
 		timeout = def(timeout, 0);
 
-		if (timeout > 29) timeout = 29;
+		if (timeout > 290) timeout = 290;
 
 		actions.alert = 'lselect';
 		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
