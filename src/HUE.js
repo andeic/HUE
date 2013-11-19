@@ -1,31 +1,5 @@
 /* HUE v0 | (c) Alex Craig | acraig.ca */
 (function() {
-	/* Ajax functions */
-
-	var get = function(url) {
-		var data;
-		$.ajax({
-		    url: url,
-		    type: 'GET',
-		    async: false,
-		    success: function(result) {
-		        data = result;
-		    }
-		});
-		return data;
-	}
-
-	var put = function(url, data) {
-		$.ajax({
-		    url: url,
-		    type: 'PUT',
-		    data: data,
-		    success: function(result) {
-		        
-		    }
-		});
-	}
-
 	/* Local variables */
 
 	var ip = '';
@@ -38,6 +12,34 @@
 
 	HUE.lighturl = 'http://' + ip + '/api/' + user + '/lights/';
 	HUE.groupurl = 'http://' + ip + '/api/' + user + '/groups/';
+	HUE.ajaxResult = '';
+
+	/* Ajax functions */
+
+	var get = function(url) {
+		var data;
+		$.ajax({
+		    url: url,
+		    type: 'GET',
+		    async: false,
+		    success: function(result) {
+		        data = result;
+		        HUE.ajaxResult = result;
+		    }
+		});
+		return data;
+	}
+
+	var put = function(url, data) {
+		$.ajax({
+		    url: url,
+		    type: 'PUT',
+		    data: data,
+		    success: function(result) {
+		    	HUE.ajaxResult = result;
+		    }
+		});
+	}
 
 	/* Default value helper function */
 	var def = function(arg, val) { 
@@ -243,6 +245,88 @@
 		group = def(group, 0);
 		actions.on = false;
 		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+	}
+
+	HUE.Gcolor = function(group, color, time) {
+		group = def(group, 0);
+		color = def(color, 'ffffff');
+		time = def (time, 4);
+
+		if (time < 0) time = 0;
+
+		if (color instanceof Array) {
+			actions.xy = HUE.rgbtoxy(color);
+		}
+		else if(typeof color === 'string') {
+			actions.xy = HUE.hextoxy(color);
+		}
+		actions.transitiontime = time;
+		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+	}
+
+	HUE.Gbri = function(group, bri, time) {
+		group = def(group, 0);
+		bri = def(bri, 255);
+		time = def (time, 4);
+
+		if (bri > 255) bri = 255;
+		if (bri < 0) bri = 0;
+		if (time < 0) time = 0;
+
+		actions.bri = bri;
+		actions.transitiontime = time;
+		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+	}
+
+	HUE.GcolorLoop = function(group, state, timeout) {
+		group = def(group, 0);
+		state = def(state, true);
+		timeout = def(timeout, 0);
+
+		if (state) actions.effect = 'colorloop';
+		else actions.effect = 'none';
+		
+		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+
+		if (timeout > 0 && state) {
+			setTimeout(function() {
+				if (actions.effect === 'none') {
+					actions.effect = 'colorloop';
+				}
+				else {
+					actions.effect = 'none';
+				}
+				put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+			}, timeout * 100);
+		}
+	}
+
+	HUE.Gbreathe = function(group) {
+		group = def(group, 0);
+		actions.alert = 'select';
+		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+	}
+
+	HUE.Gbreathing = function(group, timeout) {
+		group = def(group, 0);
+		timeout = def(timeout, 0);
+
+		if (timeout > 29) timeout = 29;
+
+		actions.alert = 'lselect';
+		put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+
+		if (timeout > 0) {
+			actions.alert = 'none';
+			setTimeout(function() {
+				put(HUE.groupurl + group + '/action', JSON.stringify(actions));
+			}, timeout * 100);
+		}
+	}
+
+	HUE.Gcustom = function(group, options) {
+		group = def(group, 0);
+		put(HUE.groupurl + group + '/action', JSON.stringify(options));
 	}
 
 })();

@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 		var hex = '#ff0000';
 
-		HUE.custom(1, {'bri':255, 'xy':HUE.hextoxy(hex), 'transitiontime':20});
+		HUE.bri(1, 111);
 		
 	});
 	
