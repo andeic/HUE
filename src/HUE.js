@@ -1,4 +1,4 @@
-/* HUE v0 | (c) Alex Craig | acraig.ca */
+/* HUE v0.1 | (c) Alex Craig | acraig.ca */
 (function() {
 	/* Local variables */
 
