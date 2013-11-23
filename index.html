@@ -16,17 +16,59 @@
 		
 		<div id="functions">
 
+			<div class="accordion last">
+				<h3>.init()</h3>
+				<span>Initializes the library with the supplied values.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<h2>Light Functions</h2>
+
 			<div class="accordion">
-				<h3>.getGroup()</h3>
-				<span>Returns the attributes of a specific group.</span>
+				<h3>.breathe()</h3>
+				<span>Performs one breathe cycle for a specific light.</span>
 				<div class="details">
 
 				</div>
 			</div>
 
 			<div class="accordion">
-				<h3>.getGroups()</h3>
-				<span>Returns a list of all the groups of lights.</span>
+				<h3>.breathing()</h3>
+				<span>Performs breathe cycles for a specific light for 30 seconds, or for a supplied amount of time less than 30 seconds.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.bri()</h3>
+				<span>Changes the brightness of a specific light to a new brightness, within the valid range.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.color()</h3>
+				<span>Changes the color of a specific light to a new color.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.colorLoop()</h3>
+				<span>Activates or deactivates the color loop setting of a specfic light depending on its current state. Can also take an amount of time for the effect to automatically turn off.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.custom()</h3>
+				<span>Sends a set of custom options to a specific light.</span>
 				<div class="details">
 
 				</div>
@@ -49,31 +91,7 @@
 			</div>
 
 			<div class="accordion">
-				<h3>.groupOff()</h3>
-				<span>Turns a group of lights off.</span>
-				<div class="details">
-
-				</div>
-			</div>
-
-			<div class="accordion">
-				<h3>.groupOn()</h3>
-				<span>Turns a group of lights on.</span>
-				<div class="details">
-
-				</div>
-			</div>
-
-			<div class="accordion">
-				<h3>.init()</h3>
-				<span>Initializes the library with the supplied values.</span>
-				<div class="details">
-
-				</div>
-			</div>
-
-			<div class="accordion">
-				<h3>.lightOff()</h3>
+				<h3>.off()</h3>
 				<span>Turns a specific light off.</span>
 				<div class="details">
 
@@ -81,16 +99,158 @@
 			</div>
 
 			<div class="accordion">
-				<h3>.lightOn()</h3>
+				<h3>.on()</h3>
 				<span>Turns a specific light on.</span>
 				<div class="details">
 
 				</div>
 			</div>
-			
-			<div class="accordion">
+
+			<div class="accordion last">
 				<h3>.swich()</h3>
 				<span>Switches a specific light on or off depending on its current state.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<h2>Group Functions</h2>
+
+			<div class="accordion">
+				<h3>.Gbreathe()</h3>
+				<span>Performs one breathe cycle for a group.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.Gbreathing()</h3>
+				<span>Performs breathe cycles for a group for 30 seconds, or for a supplied amount of time less than 30 seconds.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.Gbri()</h3>
+				<span>Changes the brightness of a group to a new brightness, within the valid range.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.Gcolor()</h3>
+				<span>Changes the color of a group to a new color.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.GcolorLoop()</h3>
+				<span>Activates or deactivates the color loop setting of a group depending on the supplied value. Can also take an amount of time for the effect to automatically turn off.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.Gcustom()</h3>
+				<span>Sends a set of custom options to a group.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.getGroup()</h3>
+				<span>Returns the attributes of a group.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.getGroups()</h3>
+				<span>Returns a list of all the groups of lights.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.Goff()</h3>
+				<span>Turns a group of lights off.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion last">
+				<h3>.Gon()</h3>
+				<span>Turns a group of lights on.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<h2>Color Conversion Functions</h2>
+
+			<div class="accordion">
+				<h3>.rbgtoxy()</h3>
+				<span>Converts a supplied rgb color value to an appropriate value in the CIE color space.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.rbgtohex()</h3>
+				<span>Converts a supplied rgb color value to a hex triplet.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.hextorbg()</h3>
+				<span>Converts a supplied hex triplet to a rgb color value.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion last">
+				<h3>.hextoxy()</h3>
+				<span>Converts a supplied hex triplet to an appropriate value in the CIE color space.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<h2>Member Variables</h2>
+
+			<div class="accordion">
+				<h3>.ajaxResult</h3>
+				<span>Contains the returned json of the latest Philips Hue API call.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.groupurl</h3>
+				<span>Contains the base url for the lights API of the Philips Hue bridge.</span>
+				<div class="details">
+
+				</div>
+			</div>
+
+			<div class="accordion">
+				<h3>.lighturl</h3>
+				<span>Contains the base url for the groups API of the Philips Hue bridge.</span>
 				<div class="details">
 
 				</div>

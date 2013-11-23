@@ -3,12 +3,16 @@ html, body {
         display: inline-block;
         width: 100%;
         font-family: arial;
+        background: url('escheresque_ste.png');
 }
 
 #wrapper {
-        width: 800px;
-        margin: 0 auto;
+        width: 1000px;
+        margin: 20px auto;
         padding-bottom: 50px;
+        background: #fff;
+        border-radius: 10px;
+        border: 1px solid #CCC;
 }
 
 h1 {
@@ -16,6 +20,8 @@ h1 {
 }
 
 header {
+        margin: 0 auto;
+        width: 800px;
         text-align: center;
         border-bottom: 4px solid #CCC;
         margin-bottom: 24px;
@@ -25,9 +31,19 @@ header {
         border: 4px solid #CCC;
         border-radius: 10px;
         margin-bottom: 15px;
-        padding: 10px 0px 10px 40px;
+        padding: 10px 40px 10px 40px;
+        background: #FEFEFA;
 }
 
 .accordion h3 {
         margin: 0 0 8px;
+}
+
+.accordion.last {
+        margin-bottom: 30px;
+}
+
+#functions {
+        margin: 0 auto;
+        width: 800px;
 }
